@@ -1,0 +1,13 @@
+.home-wrapper {
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  overflow-x: clip;
+}
+
+.choose-restaurant {
+  gap: 16px
+}
+
+.header-title {
+  color: red;
+}

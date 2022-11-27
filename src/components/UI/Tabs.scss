@@ -1,0 +1,13 @@
+.tab-list {
+  gap: 16px;
+}
+
+.single-tab {
+  font-size: 22px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.5;
+    font-size: 24px;
+  }
+}

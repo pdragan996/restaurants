@@ -1,0 +1,41 @@
+.flex {
+  display: flex;
+  align-items: center;
+
+  &--center {
+    justify-content: center;
+  }
+
+  &--start {
+    justify-content: flex-start;
+  }
+
+  &--column {
+    flex-direction: column;
+  }
+}
+
+//paddings
+.p8 {
+  padding: 8px;
+}
+
+.p16 {
+  padding: 16px;
+}
+
+//margins
+
+.m8 {
+  margin: 8px;
+}
+
+.m16 {
+  margin: 16px;
+}
+
+//widths
+
+.w100 {
+  width: 100%;
+}

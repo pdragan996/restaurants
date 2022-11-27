@@ -1,0 +1,24 @@
+@import "../../shared/Variables";
+
+.res-info-wrapper {
+  min-height: 48px;
+  background-color: $color-grey-0;
+  position: relative;
+}
+
+.cancel-choice {
+  width: 25px;
+  height: 25px;
+  background-color: $color-red;
+  right: -8px;
+  top: -8px;
+  position: absolute;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    opacity: .7;
+  }
+}

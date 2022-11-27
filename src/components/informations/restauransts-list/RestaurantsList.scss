@@ -1,0 +1,11 @@
+@import "../../../shared/Variables";
+
+.list-wrapper {
+  min-height: 56px;
+}
+
+.res-list {
+  flex-wrap: wrap;
+  padding: 0;
+  justify-content: flex-start;
+}
