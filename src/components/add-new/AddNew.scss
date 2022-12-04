@@ -1,0 +1,12 @@
+@import "src/shared/Variables";
+
+.add-new-form {
+  background-color: $color-grey-0;
+  width: 50%;
+  margin: 16px auto;
+  border-radius: 16px;
+
+  &__buttons {
+    width: 100%;
+  }
+}
