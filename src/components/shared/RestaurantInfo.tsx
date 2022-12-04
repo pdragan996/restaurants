@@ -5,7 +5,7 @@ import { IRestaurant } from '../../shared/models/restaurant.model';
 
 interface RestaurantInfoProps {
   restaurant: IRestaurant;
-  key: number;
+  key: number | string;
   cancelChoice?: () => void;
 }
 

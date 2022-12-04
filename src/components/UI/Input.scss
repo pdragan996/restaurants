@@ -1,0 +1,10 @@
+@import "src/shared/Variables";
+
+.input {
+  align-items: flex-start;
+
+  &__field {
+    border-radius: 8px;
+    width: calc(100% - 16px);
+  }
+}

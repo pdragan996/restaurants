@@ -1,9 +1,6 @@
 import { IRestaurant } from './models/restaurant.model';
 
-export const emptyRestaurant: IRestaurant = {
-  id: 0,
-  name: '',
-}
+export const firebaseUrl = 'https://restaurants-6ec0c-default-rtdb.firebaseio.com';
 
 export const resList: IRestaurant[] = [
   {

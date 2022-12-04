@@ -10,6 +10,10 @@
     justify-content: flex-start;
   }
 
+  &--end {
+    justify-content: flex-end;
+  }
+
   &--column {
     flex-direction: column;
   }
