@@ -10,7 +10,6 @@ const RestaurantsList = () => {
   const [isListShown, setIsListShown] = useState(false);
   const [restaurantsList, setRestaurantsList] = useState<IRestaurant[]>([]);
   
-  //TODO (Add try catch block)
   const fetchRestaurantsData = async () => {
     try {
       const response = await fetch(`${firebaseUrl}/restaurants.json`);

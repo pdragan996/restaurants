@@ -30,7 +30,7 @@ const AddNew = () => {
       
       setTimeout( () => {
         setIsModalOpened(false);
-      } , 2000)
+      } , 5000)
       
       
     } catch (error) {

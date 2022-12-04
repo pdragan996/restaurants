@@ -6,7 +6,6 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: any) => {
     <div className="textarea p8">
       <label className="textarea__label">{props.label}</label>
       <textarea className="textarea__field p8" ref={ref}>
-      
       </textarea>
     </div>
   )
