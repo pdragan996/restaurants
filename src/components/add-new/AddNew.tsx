@@ -4,39 +4,39 @@ import Input from '../UI/Input';
 import Textarea from '../UI/Textarea';
 import Button from '../UI/Button';
 import { IRestaurant } from '../../shared/models/restaurant.model';
-import { firebaseUrl } from '../../shared/config';
-import Modal from '../shared/Modal';
+import { firebaseCollection, firebaseUrl, MESSAGES } from '../../shared/config';
+import Toastr from '../shared/toastr/Toastr';
 
 const AddNew = () => {
   const [isErrorOccurred, setIsErrorOccurred] = useState(false);
-  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [isToastrShown, setIsToastrShown] = useState(false);
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
   const ratingRef = useRef() as MutableRefObject<HTMLInputElement>;
   const locationRef = useRef() as MutableRefObject<HTMLInputElement>;
   const descriptionRef = useRef() as MutableRefObject<HTMLTextAreaElement>;
   
-  const hideModalHandler = () => {
-    setIsModalOpened(false);
+  const hideToastr = (seconds: number = 4) => {
+    setTimeout(() => {
+      setIsToastrShown(false);
+    }, seconds * 1000)
   }
   
   const submitRestaurantHandler = async (restaurant: IRestaurant) => {
     try {
-      await fetch(`${firebaseUrl}/restaurants.json`, {
+      await fetch(`${firebaseUrl}/${firebaseCollection}`, {
         method: 'POST',
         body: JSON.stringify(restaurant)
       });
       setIsErrorOccurred(false);
-      setIsModalOpened(true);
-      
-      setTimeout( () => {
-        setIsModalOpened(false);
-      } , 5000)
-      
+      setIsToastrShown(true);
+      hideToastr();
       
     } catch (error) {
+      // TODO delete log after checking response from firebase
       console.log(error);
       setIsErrorOccurred(true);
-      setIsModalOpened(true);
+      setIsToastrShown(true);
+      hideToastr();
     }
   }
   
@@ -51,7 +51,12 @@ const AddNew = () => {
       description: descriptionRef.current.value
     }
     
-    submitRestaurantHandler(newRestaurant).then( () => {
+    if (!isNameValid(nameRef.current.value) || !isRatingValid(+ratingRef.current.value)) {
+      // TODO (Add form validation)
+      return;
+    }
+    
+    submitRestaurantHandler(newRestaurant).then(() => {
       nameRef.current.value = '';
       ratingRef.current.value = '';
       locationRef.current.value = '';
@@ -61,7 +66,7 @@ const AddNew = () => {
   
   return (
     <Fragment>
-      { !isErrorOccurred && !isModalOpened && <div className="page">
+      <div className="page">
         <h1 className="flex flex--center">Add new restaurant to list</h1>
         <form onSubmit={onSubmitHandler} className="add-new-form p16">
           <Input ref={nameRef} label="Name" type="text"/>
@@ -73,19 +78,35 @@ const AddNew = () => {
             <Button name="Reset" type="reset"/>
           </div>
         </form>
-      </div>}
-      { isErrorOccurred && isModalOpened &&
-        <Modal onHide={hideModalHandler}>
-          <h1>Error Modal</h1>
-        </Modal>
+      </div>
+      {
+        isToastrShown && !isErrorOccurred &&
+        <Toastr
+          message={MESSAGES.RESPONSE.SUCCESS.ADD}
+          type="success"
+        />
       }
-      { !isErrorOccurred && isModalOpened &&
-        <Modal onHide={hideModalHandler}>
-          <h1>Success Modal</h1>
-        </Modal>
+      {
+        isToastrShown && isErrorOccurred &&
+        <Toastr
+          message={'Neki Message'}
+          type="error"
+        />
       }
+    
     </Fragment>
   )
+}
+
+const isNameValid = (name: string): boolean => {
+  return !!name && name.length < 60;
+}
+
+const isRatingValid = (rating: number): boolean => {
+  if (!rating) {
+    return true;
+  }
+  return rating > 0 && rating <= 5 && Number.isInteger(rating);
 }
 
 export default AddNew;

@@ -1,18 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import './RestaurantsList.scss';
 import '../../../shared/SharedStyles.scss';
 import Button from '../../UI/Button';
-import { firebaseUrl } from '../../../shared/config';
+import { firebaseCollection, firebaseUrl, MESSAGES } from '../../../shared/config';
 import RestaurantItem from '../../shared/RestaurantItem';
 import { IRestaurant } from '../../../shared/models/restaurant.model';
+import Toastr from '../../shared/toastr/Toastr';
 
 const RestaurantsList = () => {
-  const [isListShown, setIsListShown] = useState(false);
+  const [isErrorOccurred, setIsErrorOccurred] = useState(false);
+  const [isToastrShown, setIsToastrShown] = useState(false);
+  const [isListShown, setIsListShown] = useState(true);
   const [restaurantsList, setRestaurantsList] = useState<IRestaurant[]>([]);
+  
+  const hideToastr = (seconds: number = 4) => {
+    setTimeout(() => {
+      setIsToastrShown(false);
+    }, seconds * 1000)
+  }
   
   const fetchRestaurantsData = async () => {
     try {
-      const response = await fetch(`${firebaseUrl}/restaurants.json`);
+      const response = await fetch(`${firebaseUrl}/${firebaseCollection}`);
       const responseData = await response.json();
       const formattedData: IRestaurant[] = [];
     
@@ -25,12 +34,14 @@ const RestaurantsList = () => {
           rating: responseData[restaurant].rating
         })
       }
-    
+      setIsErrorOccurred(false);
       return formattedData;
     } catch (error) {
-      console.log(error);
+      //TODO Check messages from firebase
+      setIsErrorOccurred(true);
+      setIsToastrShown(true);
+      hideToastr();
       return [];
-      //logic for open modal here
     }
   }
   
@@ -44,21 +55,32 @@ const RestaurantsList = () => {
     setIsListShown(!isListShown);
   }
   
+  const deleteItem = (event: any) => {
+    console.log(event);
+  }
+  
   return (
-    <div className="m8 flex flex--center flex--column">
-      <Button name={isListShown ? 'Hide list' : 'Show list'} clickFunction={showListToggle}/>
-      <div className="list-wrapper p8 w100">
-        {isListShown && <ul className="flex res-list">
-          {restaurantsList.map((restaurant: IRestaurant) =>
-            <RestaurantItem
-              key={restaurant.id}
-              name={restaurant.name}
-              description={restaurant.description}
-              rating={restaurant.rating}
-            />)}
-        </ul>}
+    <Fragment>
+      <div className="m8 flex flex--center flex--column">
+        <Button name={isListShown ? 'Hide list' : 'Show list'} clickFunction={showListToggle}/>
+        <div className="list-wrapper flex p8 w100">
+          {isListShown && <ul className="flex res-list">
+            {restaurantsList.map((restaurant: IRestaurant) =>
+                <RestaurantItem
+                  key={restaurant.id}
+                  name={restaurant.name}
+                  description={restaurant.description}
+                  rating={restaurant.rating}
+                />
+              )}
+          </ul>}
+        </div>
       </div>
-    </div>
+      {
+        isErrorOccurred && isToastrShown && <Toastr type="error" message={MESSAGES.RESPONSE.ERROR} />
+      }
+    </Fragment>
+    
   )
 }
 

@@ -1,0 +1,23 @@
+@import "src/shared/Variables";
+
+.toastr {
+  position: absolute;
+  top: 5vh;
+  left: 25%;
+  width: 50%;
+  min-height: 72px;
+  font-size: 24px;
+  font-weight: 500;
+  word-break: break-word;
+  border-radius: 16px;
+  color: white;
+
+  &--success {
+    background-color: $color-success;
+  }
+
+  &--error {
+    background-color: $color-red;
+  }
+}
+
