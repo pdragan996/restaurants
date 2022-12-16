@@ -1,12 +1,5 @@
 import React from 'react';
 import './RestaurantItem.scss';
-import '../../shared/SharedStyles.scss';
-
-interface ListItemProps {
-  name: string;
-  description?: string;
-  rating?: number;
-}
 
 const RestaurantItem = (props: ListItemProps) => {
   
@@ -20,3 +13,9 @@ const RestaurantItem = (props: ListItemProps) => {
 }
 
 export default RestaurantItem;
+
+interface ListItemProps {
+  name: string;
+  description?: string;
+  rating?: number;
+}
