@@ -93,7 +93,6 @@ const AddNew = () => {
           type="error"
         />
       }
-    
     </Fragment>
   )
 }

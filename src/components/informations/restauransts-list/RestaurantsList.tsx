@@ -55,16 +55,12 @@ const RestaurantsList = () => {
     setIsListShown(!isListShown);
   }
   
-  const deleteItem = (event: any) => {
-    console.log(event);
-  }
-  
   return (
     <Fragment>
       <div className="m8 flex flex--center flex--column">
         <Button name={isListShown ? 'Hide list' : 'Show list'} clickFunction={showListToggle}/>
         <div className="list-wrapper flex p8 w100">
-          {isListShown && <ul className="flex res-list">
+          {isListShown && <ul className="flex res-list p0">
             {restaurantsList.map((restaurant: IRestaurant) =>
                 <RestaurantItem
                   key={restaurant.id}
