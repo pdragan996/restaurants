@@ -14,6 +14,8 @@ const Toastr = (props: ToastrProps) => {
 export default Toastr;
 
 interface ToastrProps {
-  type: string;
+  type: ToastrType;
   message: string;
 }
+
+type ToastrType = 'success' | 'error';

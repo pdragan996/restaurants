@@ -4,8 +4,9 @@ import Input from '../UI/Input';
 import Textarea from '../UI/Textarea';
 import Button from '../UI/Button';
 import { IRestaurant } from '../../shared/models/restaurant.model';
-import { firebaseCollection, firebaseUrl, MESSAGES } from '../../shared/config';
+import { MESSAGES } from '../../shared/config';
 import Toastr from '../shared/toastr/Toastr';
+import { saveRestaurant } from '../../shared/services/restaurant.service';
 
 const AddNew = () => {
   const [isErrorOccurred, setIsErrorOccurred] = useState(false);
@@ -23,10 +24,7 @@ const AddNew = () => {
   
   const submitRestaurantHandler = async (restaurant: IRestaurant) => {
     try {
-      await fetch(`${firebaseUrl}/${firebaseCollection}`, {
-        method: 'POST',
-        body: JSON.stringify(restaurant)
-      });
+      await saveRestaurant(restaurant)
       setIsErrorOccurred(false);
       setIsToastrShown(true);
       hideToastr();

@@ -16,10 +16,10 @@ const ModalOverlay = (props: any) => {
 
 const overlays = document.getElementById('overlays')!;
 
-const Modal = (props: any) => {
+const Modal = ({onHide, children}: any) => {
   return <Fragment>
-    {ReactDOM.createPortal(<Backdrop onHide={props.onHide} />, overlays)}
-    {ReactDOM.createPortal(<ModalOverlay>{props.children}</ModalOverlay>, overlays)}
+    {ReactDOM.createPortal(<Backdrop onHide={onHide} />, overlays)}
+    {ReactDOM.createPortal(<ModalOverlay>{children}</ModalOverlay>, overlays)}
   </Fragment>
 }
 

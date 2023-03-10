@@ -3,11 +3,18 @@
 .btn {
   border-radius: 8px;
   font-size: 14px;
-  background-color: $color-blue;
   color: white;
   height: 36px;
   border: none;
   min-width: 64px;
+
+  &--regular {
+    background-color: $color-blue;
+  }
+
+  &--delete {
+    background-color: $color-red;
+  }
 
   &:hover {
     opacity: 0.7;

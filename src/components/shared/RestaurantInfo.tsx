@@ -10,9 +10,7 @@ const RestaurantInfo = (props: RestaurantInfoProps) => {
             onClick={props.cancelChoice}
       >X</div>}
       <RestaurantItem
-        name={props.restaurant.name}
-        description={props.restaurant.description}
-        rating={props.restaurant.rating}
+        restaurant={props.restaurant}
       />
     </div>
   )
