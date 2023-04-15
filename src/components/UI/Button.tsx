@@ -7,17 +7,18 @@ interface ButtonProps {
   name: string;
   clickFunction?: () => void;
   type?: ButtonType;
+  isDeleteButton?: boolean;
 }
 
-const Button = (props: ButtonProps) => {
+const Button = ({name, clickFunction, type, isDeleteButton}: ButtonProps) => {
   return (
     <React.Fragment>
       <button
-        className="btn m8"
-        onClick={props.clickFunction}
-        type={props.type}
+        className={`btn m8 ${isDeleteButton ? 'btn--delete' : 'btn--regular'}`}
+        onClick={clickFunction}
+        type={type}
       >
-        {props.name}
+        {name}
       </button>
     </React.Fragment>
   )

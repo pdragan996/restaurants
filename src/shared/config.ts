@@ -3,6 +3,7 @@ import { IRestaurant } from './models/restaurant.model';
 export const firebaseUrl = 'https://restaurants-6ec0c-default-rtdb.firebaseio.com';
 
 export const firebaseCollection = 'restaurants.json';
+export const firebaseCollectionName = 'restaurants';
 
 export const resList: IRestaurant[] = [
   {
