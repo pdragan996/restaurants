@@ -4,7 +4,7 @@ import Dashboard from './components/Dashboard';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/home-page/Home';
 import AddNew from './components/add-new/AddNew';
-import Informations from './components/informations/Informations';
+import RestaurantsList from './components/informations/RestaurantsList';
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<Dashboard/>}>
           <Route index element={<Home/>}/>
           <Route path="add-new" element={<AddNew/>}/>
-          <Route path="informations" element={<Informations/>}/>
+          <Route path="informations" element={<RestaurantsList/>}/>
           <Route path="*" element={<Home/>}/>
         </Route>
       </Routes>

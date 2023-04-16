@@ -47,8 +47,7 @@ const Home = () => {
           <Button name="Generate restaurant" clickFunction={getRandomNum}/>
           {isGenerated && <RestaurantInfo
             cancelChoice={handleCancelChoice}
-            restaurant={restaurantsList[randomNumber]}
-            key={restaurantsList[randomNumber].id}/>}
+            restaurant={restaurantsList[randomNumber]}/>}
         </div>
         
       </div>

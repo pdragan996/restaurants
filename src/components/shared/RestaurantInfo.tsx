@@ -3,7 +3,7 @@ import './RestaurantInfo.scss';
 import RestaurantItem from './RestaurantItem';
 import { IRestaurant } from '../../shared/models/restaurant.model';
 
-const RestaurantInfo = ({restaurant, cancelChoice, key}: RestaurantInfoProps) => {
+const RestaurantInfo = ({restaurant, cancelChoice}: RestaurantInfoProps) => {
   return (
     <div className="res-info-wrapper">
       {cancelChoice && <div className="cancel-choice flex flex--center"
@@ -20,6 +20,5 @@ export default RestaurantInfo;
 
 interface RestaurantInfoProps {
   restaurant: IRestaurant;
-  key: number | string;
   cancelChoice?: () => void;
 }

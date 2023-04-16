@@ -1,12 +1,12 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './RestaurantsList.scss';
-import '../../../shared/SharedStyles.scss';
-import Button from '../../UI/Button';
-import { MESSAGES } from '../../../shared/config';
-import RestaurantItem from '../../shared/RestaurantItem';
-import { IRestaurant } from '../../../shared/models/restaurant.model';
-import Toastr from '../../shared/toastr/Toastr';
-import { getRestaurantsData } from '../../../shared/services/restaurant.service';
+import '../../shared/SharedStyles.scss';
+import Button from '../UI/Button';
+import { MESSAGES } from '../../shared/config';
+import RestaurantItem from '../shared/RestaurantItem';
+import { IRestaurant } from '../../shared/models/restaurant.model';
+import Toastr from '../shared/toastr/Toastr';
+import { getRestaurantsData } from '../../shared/services/restaurant.service';
 
 const RestaurantsList = () => {
   const [isErrorOccurred, setIsErrorOccurred] = useState(false);
@@ -45,7 +45,7 @@ const RestaurantsList = () => {
   }
   
   return (
-    <Fragment>
+    <div className="page">
       <div className="m8 flex flex--center flex--column">
         <Button name={isListShown ? 'Hide list' : 'Show list'} clickFunction={showListToggle}/>
         <div className="list-wrapper flex p8 w100">
@@ -62,7 +62,7 @@ const RestaurantsList = () => {
       {
         isErrorOccurred && isToastrShown && <Toastr type="error" message={MESSAGES.RESPONSE.ERROR}/>
       }
-    </Fragment>
+    </div>
   
   )
 }

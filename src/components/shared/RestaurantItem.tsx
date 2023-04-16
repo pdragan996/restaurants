@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './RestaurantItem.scss';
-import RestaurantDetailsModalData from '../informations/restauransts-list/RestaurantDetailsModalData';
+import RestaurantDetailsModalData from '../informations/RestaurantDetailsModalData';
 import { IRestaurant } from '../../shared/models/restaurant.model';
 
 const RestaurantItem = ({restaurant}: ListItemProps) => {

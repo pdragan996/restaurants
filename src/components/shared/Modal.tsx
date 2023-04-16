@@ -9,7 +9,7 @@ const Backdrop =({onHide}: any) => {
 const ModalOverlay = ({children}: any) => {
   return(
     <div className="modal">
-      <div className="">{children}</div>
+      {children}
     </div>
   );
 }
