@@ -2,14 +2,14 @@ import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import './Modal.scss';
 
-const Backdrop =(props: any) => {
-  return <div className="backdrop" onClick={props.onHide} />
+const Backdrop =({onHide}: any) => {
+  return <div className="backdrop" onClick={onHide} />
 };
 
-const ModalOverlay = (props: any) => {
+const ModalOverlay = ({children}: any) => {
   return(
     <div className="modal">
-      <div className="">{props.children}</div>
+      <div className="">{children}</div>
     </div>
   );
 }

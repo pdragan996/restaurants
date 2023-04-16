@@ -12,7 +12,7 @@ interface ButtonProps {
 
 const Button = ({name, clickFunction, type, isDeleteButton}: ButtonProps) => {
   return (
-    <React.Fragment>
+    <>
       <button
         className={`btn m8 ${isDeleteButton ? 'btn--delete' : 'btn--regular'}`}
         onClick={clickFunction}
@@ -20,7 +20,7 @@ const Button = ({name, clickFunction, type, isDeleteButton}: ButtonProps) => {
       >
         {name}
       </button>
-    </React.Fragment>
+    </>
   )
 }
 

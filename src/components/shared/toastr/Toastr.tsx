@@ -1,12 +1,12 @@
 import React from 'react';
 import './Toastr.scss';
 
-const Toastr = (props: ToastrProps) => {
+const Toastr = ({type, message}: ToastrProps) => {
   
   return (
     <div className=
-           {`p16 flex flex--center toastr ${props.type === 'success' ? 'toastr--success': 'toastr--error'}`}>
-      {props.message}
+           {`p16 flex flex--center toastr ${type === 'success' ? 'toastr--success': 'toastr--error'}`}>
+      {message}
     </div>
   )
 }

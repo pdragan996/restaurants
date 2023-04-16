@@ -3,14 +3,14 @@ import './RestaurantInfo.scss';
 import RestaurantItem from './RestaurantItem';
 import { IRestaurant } from '../../shared/models/restaurant.model';
 
-const RestaurantInfo = (props: RestaurantInfoProps) => {
+const RestaurantInfo = ({restaurant, cancelChoice, key}: RestaurantInfoProps) => {
   return (
     <div className="res-info-wrapper">
-      {props.cancelChoice && <div className="cancel-choice flex flex--center"
-            onClick={props.cancelChoice}
+      {cancelChoice && <div className="cancel-choice flex flex--center"
+            onClick={cancelChoice}
       >X</div>}
       <RestaurantItem
-        restaurant={props.restaurant}
+        restaurant={restaurant}
       />
     </div>
   )
