@@ -4,13 +4,11 @@ import { IRestaurant } from '../models/restaurant.model';
 
 const url = `${firebaseUrl}/${firebaseCollection}`;
 
-
-export const getRestaurantsData = async (): Promise<any> => {
+export const getRestaurantsData = async (): Promise<IRestaurant[]> => {
   const responseData = (await axios.get(url)).data
   return mapFirebaseResponseToArray(responseData);
 }
 
-//make interface for firebase data
 const mapFirebaseResponseToArray = (responseData: any): IRestaurant[] => {
   let formattedData: IRestaurant[] = [];
   for (let restaurant in responseData) {
@@ -25,10 +23,10 @@ const mapFirebaseResponseToArray = (responseData: any): IRestaurant[] => {
   return formattedData;
 }
 
-export const saveRestaurant = async (restaurant: IRestaurant) => {
+export const saveRestaurant = async (restaurant: IRestaurant): Promise<void> => {
   await axios.post(url, restaurant)
 }
 
-export const deleteRestaurant = async (id: string) => {
+export const deleteRestaurant = async (id: string): Promise<void> => {
   await axios.delete(`${firebaseUrl}/${firebaseCollectionName}/${id}.json`);
 }
