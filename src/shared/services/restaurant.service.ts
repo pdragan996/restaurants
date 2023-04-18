@@ -11,13 +11,14 @@ export const getRestaurantsData = async (): Promise<IRestaurant[]> => {
 
 const mapFirebaseResponseToArray = (responseData: any): IRestaurant[] => {
   let formattedData: IRestaurant[] = [];
-  for (let restaurant in responseData) {
+  for (let firebaseId in responseData) {
     formattedData.push({
-      id: restaurant,
-      name: responseData[restaurant].name,
-      location: responseData[restaurant].location,
-      description: responseData[restaurant].description,
-      rating: responseData[restaurant].rating
+      id: responseData[firebaseId].id,
+      name: responseData[firebaseId].name,
+      location: responseData[firebaseId].location,
+      description: responseData[firebaseId].description,
+      rating: responseData[firebaseId].rating,
+      firebaseId
     })
   }
   return formattedData;

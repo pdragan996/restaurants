@@ -14,10 +14,8 @@ const RestaurantsList = () => {
   const [isListShown, setIsListShown] = useState(true);
   const [restaurantsList, setRestaurantsList] = useState<IRestaurant[]>([]);
   
-  const hideToastr = (seconds: number = 4) => {
-    setTimeout(() => {
-      setIsToastrShown(false);
-    }, seconds * 1000)
+  const hideToastr = () => {
+    setIsToastrShown(false);
   }
   
   const fetchRestaurantsData = async () => {
@@ -29,7 +27,6 @@ const RestaurantsList = () => {
       //TODO Check messages from firebase
       setIsErrorOccurred(true);
       setIsToastrShown(true);
-      hideToastr();
       return [];
     }
   }
@@ -43,6 +40,14 @@ const RestaurantsList = () => {
   const showListToggle = () => {
     setIsListShown(!isListShown);
   }
+
+  const resList = restaurantsList.map((restaurant: IRestaurant) =>
+      <RestaurantItem
+        key={restaurant.id}
+        restaurant={restaurant}
+        isViewOnly={false}
+      />
+    )
   
   return (
     <div className="page">
@@ -50,17 +55,17 @@ const RestaurantsList = () => {
         <Button name={isListShown ? 'Hide list' : 'Show list'} clickFunction={showListToggle}/>
         <div className="list-wrapper flex p8 w100">
           {isListShown && <ul className="flex res-list p0">
-            {restaurantsList.map((restaurant: IRestaurant) =>
-              <RestaurantItem
-                key={restaurant.id}
-                restaurant={restaurant}
-              />
-            )}
+            {resList}
           </ul>}
         </div>
       </div>
       {
-        isErrorOccurred && isToastrShown && <Toastr type="error" message={MESSAGES.RESPONSE.ERROR}/>
+        isErrorOccurred && isToastrShown &&
+        <Toastr
+          close={hideToastr}
+          closeTimeout={4}
+          type="error"
+          message={MESSAGES.RESPONSE.ERROR}/>
       }
     </div>
   

@@ -4,4 +4,5 @@ export interface IRestaurant {
   rating?: number;
   description?: string;
   location?: string;
+  firebaseId: string;
 }

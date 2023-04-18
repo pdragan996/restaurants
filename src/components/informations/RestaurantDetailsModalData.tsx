@@ -8,12 +8,14 @@ import { deleteRestaurant } from '../../shared/services/restaurant.service';
 interface RestaurantDetailsModalDataProps {
   restaurant: IRestaurant;
   onHide: () => void;
+  afterDelete: () => void
 }
 
-const RestaurantDetailsModalData = ({restaurant, onHide}: RestaurantDetailsModalDataProps) => {
+const RestaurantDetailsModalData = ({restaurant, onHide, afterDelete}: RestaurantDetailsModalDataProps) => {
   
   const deleteButtonHandler = async () => {
-    await deleteRestaurant(restaurant.id.toString())
+    await deleteRestaurant(restaurant.firebaseId.toString())
+    afterDelete();
     onHide();
   }
   

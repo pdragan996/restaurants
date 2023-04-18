@@ -11,15 +11,14 @@ import { saveRestaurant } from '../../shared/services/restaurant.service';
 const AddNew = () => {
   const [isErrorOccurred, setIsErrorOccurred] = useState(false);
   const [isToastrShown, setIsToastrShown] = useState(false);
+
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
   const ratingRef = useRef() as MutableRefObject<HTMLInputElement>;
   const locationRef = useRef() as MutableRefObject<HTMLInputElement>;
   const descriptionRef = useRef() as MutableRefObject<HTMLTextAreaElement>;
-  
-  const hideToastr = (seconds: number = 4) => {
-    setTimeout(() => {
-      setIsToastrShown(false);
-    }, seconds * 1000)
+
+  const removeToastr = () => {
+    setIsToastrShown(false);
   }
   
   const submitRestaurantHandler = async (restaurant: IRestaurant) => {
@@ -27,14 +26,11 @@ const AddNew = () => {
       await saveRestaurant(restaurant)
       setIsErrorOccurred(false);
       setIsToastrShown(true);
-      hideToastr();
       
     } catch (error) {
-      // TODO delete log after checking response from firebase
-      console.log(error);
+      // TODO Check errors from firebase
       setIsErrorOccurred(true);
       setIsToastrShown(true);
-      hideToastr();
     }
   }
   
@@ -43,6 +39,7 @@ const AddNew = () => {
     
     const newRestaurant: IRestaurant = {
       id: Math.floor(Math.random() * 100000),
+      firebaseId: '',
       name: nameRef.current.value,
       rating: +(ratingRef.current.value),
       location: locationRef.current.value,
@@ -51,6 +48,8 @@ const AddNew = () => {
     
     if (!isNameValid(nameRef.current.value) || !isRatingValid(+ratingRef.current.value)) {
       // TODO (Add form validation)
+      setIsToastrShown(true);
+      setIsErrorOccurred(true);
       return;
     }
     
@@ -67,8 +66,8 @@ const AddNew = () => {
       <div className="page">
         <h1 className="flex flex--center">Add new restaurant to list</h1>
         <form onSubmit={onSubmitHandler} className="add-new-form p16">
-          <Input ref={nameRef} label="Name" type="text"/>
-          <Input ref={ratingRef} label="Rating" type="number"/>
+          <Input ref={nameRef} label="Name" type="text" isRequired={true}/>
+          <Input ref={ratingRef} label="Rating" type="number" max={5} min={1}/>
           <Input ref={locationRef} label="Location" type="text"/>
           <Textarea ref={descriptionRef} label="Description"/>
           <div className="add-new-form__buttons flex flex--end">
@@ -80,6 +79,8 @@ const AddNew = () => {
       {
         isToastrShown && !isErrorOccurred &&
         <Toastr
+          close={removeToastr}
+          closeTimeout={3}
           message={MESSAGES.RESPONSE.SUCCESS.ADD}
           type="success"
         />
@@ -87,7 +88,9 @@ const AddNew = () => {
       {
         isToastrShown && isErrorOccurred &&
         <Toastr
-          message={'Neki Message'}
+          close={removeToastr}
+          closeTimeout={4}
+          message={'Form is not valid'}
           type="error"
         />
       }
@@ -103,7 +106,7 @@ const isRatingValid = (rating: number): boolean => {
   if (!rating) {
     return true;
   }
-  return rating > 0 && rating <= 5 && Number.isInteger(rating);
+  return Number.isInteger(rating) && rating > 0 && rating <= 5;
 }
 
 export default AddNew;
