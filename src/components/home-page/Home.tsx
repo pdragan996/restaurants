@@ -17,7 +17,7 @@ const Home = () => {
       setIsErrorOccurred(false);
       return responseData;
     } catch (error) {
-      //TODO Add error handling
+      //TODO Add custom error handling
       setIsErrorOccurred(true);
       return [];
     }
@@ -26,7 +26,7 @@ const Home = () => {
   useEffect( ()=> {
     fetchRestaurantsData().then(list => setRestaurantsList(list)).catch(err => {
       setIsErrorOccurred(true)
-      // TODO Add some global error handler
+      // TODO Custom error handling
     });
   },[])
 

@@ -5,7 +5,7 @@ import { IRestaurant } from '../../shared/models/restaurant.model';
 import Toastr from './toastr/Toastr';
 import {MESSAGES} from '../../shared/config';
 
-const RestaurantItem = ({restaurant, isViewOnly}: ListItemProps) => {
+const RestaurantItem = ({restaurant, isViewOnly, refetchData}: ListItemProps) => {
   const [isModalOpened, setIsModalOpened] = useState(false)
   const [isToastrOpened, setIsToastrOpened] = useState(false)
 
@@ -20,7 +20,10 @@ const RestaurantItem = ({restaurant, isViewOnly}: ListItemProps) => {
   }
 
   const handleDelete = () => {
-    setIsToastrOpened(true)
+    setIsToastrOpened(true);
+    if (refetchData) {
+      refetchData();
+    }
   }
   
   return (
@@ -50,4 +53,5 @@ interface ListItemProps {
   restaurant: IRestaurant;
   isViewOnly: boolean;
   key: string | number;
+  refetchData?: () => void;
 }

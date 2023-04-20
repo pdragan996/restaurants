@@ -12,6 +12,7 @@ const RestaurantsList = () => {
   const [isErrorOccurred, setIsErrorOccurred] = useState(false);
   const [isToastrShown, setIsToastrShown] = useState(false);
   const [isListShown, setIsListShown] = useState(true);
+  const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
   const [restaurantsList, setRestaurantsList] = useState<IRestaurant[]>([]);
   
   const hideToastr = () => {
@@ -35,7 +36,8 @@ const RestaurantsList = () => {
     fetchRestaurantsData().then(data => {
       setRestaurantsList(data);
     });
-  }, [])
+    setIsDeleteSuccess(false);
+  }, [isDeleteSuccess])
   
   const showListToggle = () => {
     setIsListShown(!isListShown);
@@ -46,6 +48,7 @@ const RestaurantsList = () => {
         key={restaurant.id}
         restaurant={restaurant}
         isViewOnly={false}
+        refetchData={ () => setIsDeleteSuccess(true) }
       />
     )
   

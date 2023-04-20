@@ -11,6 +11,7 @@
   word-break: break-word;
   border-radius: 16px;
   color: white;
+  z-index: 10;
 
   &--success {
     background-color: $color-success;

@@ -1,7 +1,7 @@
 import React from 'react';
-import './Button.scss'
-import '../../shared/SharedStyles.scss'
-import { ButtonType } from '../../shared/types/button.type';
+import './Button.scss';
+import '../../shared/SharedStyles.scss';
+import {ButtonType} from '../../shared/types/button.type';
 
 interface ButtonProps {
   name: string;
@@ -10,7 +10,12 @@ interface ButtonProps {
   isDeleteButton?: boolean;
 }
 
-const Button = ({name, clickFunction, type, isDeleteButton}: ButtonProps) => {
+const Button = ({
+                  name,
+                  clickFunction,
+                  type,
+                  isDeleteButton
+                }: ButtonProps) => {
   return (
     <>
       <button
