@@ -28,6 +28,8 @@ return (
     <div className="flex flex--column details-modal ">
       <span>{restaurant.name}</span>
       <span>{restaurant.location}</span>
+      <span>{restaurant.description}</span>
+      <span>{restaurant.rating}</span>
 
       <Button name="Delete restaurant" isDeleteButton={true} clickFunction={deleteButtonHandler}/>
     </div>
