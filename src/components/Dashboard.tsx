@@ -7,10 +7,10 @@ import { Outlet } from 'react-router-dom';
 const Dashboard = () => {
   
   return (
-    <React.Fragment>
+    <>
       <HeaderMenu />
       <Outlet />
-    </React.Fragment>
+    </>
   )
 }
 

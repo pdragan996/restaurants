@@ -52,9 +52,8 @@ const Home = () => {
           <Button name="Generate restaurant" clickFunction={getRandomNum}/>
           {isGenerated && !isErrorOccurred && <RestaurantInfo
             cancelChoice={handleCancelChoice}
-            restaurant={restaurantsList[randomNumber]}/>}
+            restaurant={restaurantsList[randomNumber]}/> }
         </div>
-        
       </div>
     )
 }

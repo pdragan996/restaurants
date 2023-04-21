@@ -63,7 +63,7 @@ const RestaurantsList = () => {
         </div>
       </div>
       {
-        isErrorOccurred && isToastrShown &&
+        !isErrorOccurred && isToastrShown &&
         <Toastr
           close={hideToastr}
           closeTimeout={4}

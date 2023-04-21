@@ -62,7 +62,7 @@ const AddNew = () => {
   }
   
   return (
-    <Fragment>
+    <>
       <div className="page">
         <h1 className="flex flex--center">Add new restaurant to list</h1>
         <form onSubmit={onSubmitHandler} className="add-new-form p16">
@@ -94,7 +94,7 @@ const AddNew = () => {
           type="error"
         />
       }
-    </Fragment>
+    </>
   )
 }
 
