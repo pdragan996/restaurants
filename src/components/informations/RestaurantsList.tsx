@@ -25,7 +25,6 @@ const RestaurantsList = () => {
       setIsErrorOccurred(false);
       return responseData;
     } catch (error) {
-      //TODO Check messages from firebase
       setIsErrorOccurred(true);
       setIsToastrShown(true);
       return [];
@@ -45,7 +44,7 @@ const RestaurantsList = () => {
 
   const resList = restaurantsList.map((restaurant: IRestaurant) =>
       <RestaurantItem
-        key={restaurant.id}
+        key={restaurant._id}
         restaurant={restaurant}
         isViewOnly={false}
         refetchData={ () => setIsDeleteSuccess(true) }

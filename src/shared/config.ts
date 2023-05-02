@@ -1,7 +1,4 @@
-export const firebaseUrl = 'https://restaurants-6ec0c-default-rtdb.firebaseio.com';
-
-export const firebaseCollection = 'restaurants.json';
-export const firebaseCollectionName = 'restaurants';
+export const serverUrl = 'http://localhost:2222/';
 
 export const MESSAGES = {
   RESPONSE: {

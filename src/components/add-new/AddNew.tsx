@@ -1,4 +1,4 @@
-import React, { Fragment, MutableRefObject, useRef, useState } from 'react';
+import React, { MutableRefObject, useRef, useState } from 'react';
 import './AddNew.scss';
 import Input from '../UI/Input';
 import Textarea from '../UI/Textarea';
@@ -38,8 +38,7 @@ const AddNew = () => {
     event.preventDefault();
     
     const newRestaurant: IRestaurant = {
-      id: Math.floor(Math.random() * 100000),
-      firebaseId: '',
+      _id: '',
       name: nameRef.current.value,
       rating: +(ratingRef.current.value),
       location: locationRef.current.value,

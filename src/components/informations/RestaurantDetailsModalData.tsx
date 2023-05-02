@@ -15,7 +15,7 @@ const RestaurantDetailsModalData = ({restaurant, onHide, afterDelete}: Restauran
 
   const deleteButtonHandler = async () => {
     try {
-      await deleteRestaurant(restaurant.firebaseId.toString());
+      await deleteRestaurant(restaurant._id);
       afterDelete();
       onHide();
     } catch(err: any) {

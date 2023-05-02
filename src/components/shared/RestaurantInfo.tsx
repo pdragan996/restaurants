@@ -10,7 +10,7 @@ const RestaurantInfo = ({restaurant, cancelChoice}: RestaurantInfoProps) => {
             onClick={cancelChoice}
       >X</div>
       <RestaurantItem
-        key={restaurant.id}
+        key={restaurant._id}
         restaurant={restaurant}
         isViewOnly={true}
       />
