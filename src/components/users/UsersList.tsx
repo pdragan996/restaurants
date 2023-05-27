@@ -31,7 +31,7 @@ const UsersList = () => {
     }
   };
 
-  const columnNames: string[] = ['name', 'username', 'email', 'isAdmin'];
+  const columnNames: string[] = ['Name', 'Username', 'Email', 'Is Admin'];
 
   useEffect(() => {
     fetchUserData().then(users => setUsersList(users));

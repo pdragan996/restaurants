@@ -1,20 +1,18 @@
 import React from 'react';
-import './Input.scss';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
+import './Input.scss';
 
-const Input = ({label, register, type, ...props}: InputProps) => {
+const Input = ({label, register, type, ...rest}: InputProps) => {
   return (
     <div className="input flex flex--column flex--center p8">
       <label className="input__label">{label}</label>
       <input className="input__field p8"
              {...register(label)}
-             type={type}
-             min={props.min}
-             max={props.max}
-             required={props.isRequired}/>
+             {...rest}
+             type={type}/>
     </div>
-  )
-}
+  );
+};
 
 export default Input;
 
@@ -24,6 +22,6 @@ interface InputProps {
   register: UseFormRegister<FieldValues>;
   min?: number;
   max?: number;
-  isRequired?: boolean
-  ref?: any;
+  isRequired?: boolean;
+  placeholder?: string;
 }

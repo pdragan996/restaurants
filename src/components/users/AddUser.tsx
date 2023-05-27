@@ -1,4 +1,5 @@
 import React from 'react';
+import { Simulate } from 'react-dom/test-utils';
 import { useForm } from 'react-hook-form';
 import { UserBasic } from '../../shared/models/user.model';
 import { addNewUser } from '../../shared/services/users.service';
@@ -17,8 +18,16 @@ const AddUser = () => {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: {errors}
   } = useForm();
+
+  const resetForm = () => {
+    setValue(USER_FORM_LABELS.name, '');
+    setValue(USER_FORM_LABELS.email, '');
+    setValue(USER_FORM_LABELS.password, '');
+    setValue(USER_FORM_LABELS.username, '');
+  };
 
   const onSubmit = async () => {
     const newUser: UserBasic = {
@@ -35,6 +44,7 @@ const AddUser = () => {
 
   return (
     <>
+      <h1 className="flex flex--center">Add new user</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="add-new-form p16">
