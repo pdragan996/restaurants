@@ -42,7 +42,6 @@ const UsersList = () => {
   return (
     <>
       <Table headers={columnNames} rows={usersList} mapFunction={mapUsersToTableRows}/>
-
       {
         isToastrShown &&
         <Toastr

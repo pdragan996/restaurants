@@ -15,7 +15,6 @@ function App() {
       <Routes>
         <Route path={ROUTES.DEFAULT} element={<Dashboard/>}>
           <Route index element={<Home/>}/>
-          {/*<Route path={ROUTES.ADD_NEW} element={<AddNew/>}/>*/}
           <Route path={ROUTES.RESTAURANTS} element={<Restaurants/>}/>
           <Route path={ROUTES.USERS} element={<Users/>}/>
           <Route path={ROUTES.PLACES} element={<Places/>}/>

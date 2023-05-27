@@ -15,7 +15,6 @@ const Restaurants = () => {
       <Button name={addFormShown ? 'Hide form' : 'Add new restaurant'} clickFunction={showFormToggle}/>
       {addFormShown && <AddNew/>}
     </div>
-    {/*<RestaurantsList/>*/}
     <List/>
   </div>;
 };

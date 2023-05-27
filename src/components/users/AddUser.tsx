@@ -28,7 +28,7 @@ const AddUser = () => {
       username: watch(USER_FORM_LABELS.username),
       //TODO Add logic for admin
       isAdmin: true,
-      isSuperAdmin: true
+      isUserSuperAdmin: true
     };
     await addNewUser(newUser);
   };

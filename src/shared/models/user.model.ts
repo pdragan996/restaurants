@@ -4,7 +4,7 @@ export interface UserBasic {
   password: string;
   isAdmin: boolean;
   username: string;
-  isSuperAdmin: boolean;
+  isUserSuperAdmin?: boolean;
 }
 
 export interface User extends UserBasic {
