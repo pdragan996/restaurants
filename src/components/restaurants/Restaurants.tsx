@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import AddRestaurant from '../add-new/AddRestaurant';
 import Button from '../UI/Button';
+import AddRestaurant from './AddRestaurant';
 import List from './List';
 
 const Restaurants = () => {

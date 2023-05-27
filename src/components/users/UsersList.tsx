@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { getUsers } from '../../services/users.service';
 import { MESSAGES } from '../../shared/config';
 import { User } from '../../shared/models/user.model';
-import { getUsers } from '../../shared/services/users.service';
 import Table from '../UI/Table';
 import Toastr from '../UI/Toastr';
 

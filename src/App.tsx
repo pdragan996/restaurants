@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/home-page/Dashboard';
 import Home from './components/home-page/Home';
 import Places from './components/places/Places';
 import Restaurants from './components/restaurants/Restaurants';

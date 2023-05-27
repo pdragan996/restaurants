@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './Home.scss';
-import Button from '../UI/Button';
-import RestaurantInfo from '../shared/RestaurantInfo';
-import { getRestaurantsData } from '../../shared/services/restaurant.service';
+import { getRestaurantsData } from '../../services/restaurant.service';
 import { IRestaurant } from '../../shared/models/restaurant.model';
+import RestaurantInfo from '../shared/RestaurantInfo';
+import Button from '../UI/Button';
+import './Home.scss';
 
 const Home = () => {
   const [isGenerated, setIsGenerated] = useState(false);
@@ -21,14 +21,14 @@ const Home = () => {
       setIsErrorOccurred(true);
       return [];
     }
-  }
+  };
 
   useEffect(() => {
     fetchRestaurantsData().then(list => setRestaurantsList(list)).catch(err => {
-      setIsErrorOccurred(true)
+      setIsErrorOccurred(true);
       // TODO Custom error handling
     });
-  }, [])
+  }, []);
 
   const getRandomNum = () => {
     // Da se pojaca Pastir :D
@@ -39,11 +39,11 @@ const Home = () => {
     const listIndex = Math.floor(Math.random() * restaurantsList.length);
     setRandomNumber(listIndex);
     setIsGenerated(true);
-  }
+  };
 
   const handleCancelChoice = () => {
     setIsGenerated(false);
-  }
+  };
 
   return (
     <div className="page home-wrapper">
@@ -55,7 +55,7 @@ const Home = () => {
           restaurant={restaurantsList[randomNumber]}/>}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Home;

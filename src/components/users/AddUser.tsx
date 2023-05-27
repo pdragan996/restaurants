@@ -1,8 +1,7 @@
 import React from 'react';
-import { Simulate } from 'react-dom/test-utils';
 import { useForm } from 'react-hook-form';
+import { addNewUser } from '../../services/users.service';
 import { UserBasic } from '../../shared/models/user.model';
-import { addNewUser } from '../../shared/services/users.service';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
 

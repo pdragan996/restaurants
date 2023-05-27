@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { MESSAGES } from '../../shared/config';
 import { IRestaurant } from '../../shared/models/restaurant.model';
-import RestaurantDetailsModalData from '../informations/RestaurantDetailsModalData';
 import Toastr from '../UI/Toastr';
+import RestaurantDetailsModalData from './RestaurantDetailsModalData';
 import './RestaurantItem.scss';
 
 const RestaurantItem = ({restaurant, isViewOnly, refetchData}: ListItemProps) => {

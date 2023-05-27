@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { serverUrl } from '../config';
-import { User, UserBasic } from '../models/user.model';
+import { serverUrl } from '../shared/config';
+import { User, UserBasic } from '../shared/models/user.model';
 
 const url = `${serverUrl}users`;
 

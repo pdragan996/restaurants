@@ -1,6 +1,6 @@
 import React from 'react';
+import { deleteRestaurant } from '../../services/restaurant.service';
 import { IRestaurant } from '../../shared/models/restaurant.model';
-import { deleteRestaurant } from '../../shared/services/restaurant.service';
 import Button from '../UI/Button';
 import Modal from '../UI/Modal';
 import './RestaurantDetailsModalData.scss';

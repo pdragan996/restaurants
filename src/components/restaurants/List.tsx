@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { getRestaurantsData } from '../../services/restaurant.service';
 import { MESSAGES } from '../../shared/config';
 import { IRestaurant } from '../../shared/models/restaurant.model';
-import { getRestaurantsData } from '../../shared/services/restaurant.service';
 import Table from '../UI/Table';
 import Toastr from '../UI/Toastr';
 

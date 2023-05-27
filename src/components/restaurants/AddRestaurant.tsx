@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { saveRestaurant } from '../../services/restaurant.service';
 import { MESSAGES } from '../../shared/config';
 import { RestaurantBasic } from '../../shared/models/restaurant.model';
-import { saveRestaurant } from '../../shared/services/restaurant.service';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
 import Textarea from '../UI/Textarea';
