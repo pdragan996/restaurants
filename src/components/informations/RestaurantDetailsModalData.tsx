@@ -1,14 +1,14 @@
 import React from 'react';
-import Modal from '../shared/Modal';
-import './RestaurantDetailsModalData.scss';
-import {IRestaurant} from '../../shared/models/restaurant.model';
+import { IRestaurant } from '../../shared/models/restaurant.model';
+import { deleteRestaurant } from '../../shared/services/restaurant.service';
 import Button from '../UI/Button';
-import {deleteRestaurant} from '../../shared/services/restaurant.service';
+import Modal from '../UI/Modal';
+import './RestaurantDetailsModalData.scss';
 
 interface RestaurantDetailsModalDataProps {
   restaurant: IRestaurant;
   onHide: () => void;
-  afterDelete: () => void
+  afterDelete: () => void;
 }
 
 const RestaurantDetailsModalData = ({restaurant, onHide, afterDelete}: RestaurantDetailsModalDataProps) => {
@@ -18,23 +18,23 @@ const RestaurantDetailsModalData = ({restaurant, onHide, afterDelete}: Restauran
       await deleteRestaurant(restaurant._id);
       afterDelete();
       onHide();
-    } catch(err: any) {
+    } catch (err: any) {
       //TODO
     }
-  }
+  };
 
-return (
-  <Modal onHide={onHide}>
-    <div className="flex flex--column details-modal ">
-      <span>{restaurant.name}</span>
-      <span>{restaurant.location}</span>
-      <span>{restaurant.description}</span>
-      <span>{restaurant.rating}</span>
+  return (
+    <Modal onHide={onHide}>
+      <div className="flex flex--column details-modal ">
+        <span>{restaurant.name}</span>
+        <span>{restaurant.location}</span>
+        <span>{restaurant.description}</span>
+        <span>{restaurant.rating}</span>
 
-      <Button name="Delete restaurant" isDeleteButton={true} clickFunction={deleteButtonHandler}/>
-    </div>
-  </Modal>
-)
-}
+        <Button name="Delete restaurant" isDeleteButton={true} clickFunction={deleteButtonHandler}/>
+      </div>
+    </Modal>
+  );
+};
 
-export default RestaurantDetailsModalData
+export default RestaurantDetailsModalData;

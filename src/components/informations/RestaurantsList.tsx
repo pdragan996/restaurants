@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import './RestaurantsList.scss';
-import '../../shared/SharedStyles.scss';
-import Button from '../UI/Button';
 import { MESSAGES } from '../../shared/config';
-import RestaurantItem from '../shared/RestaurantItem';
 import { IRestaurant } from '../../shared/models/restaurant.model';
-import Toastr from '../shared/toastr/Toastr';
 import { getRestaurantsData } from '../../shared/services/restaurant.service';
+import '../../shared/SharedStyles.scss';
+import RestaurantItem from '../shared/RestaurantItem';
+import Button from '../UI/Button';
+import Toastr from '../UI/Toastr';
+import './RestaurantsList.scss';
 
 const RestaurantsList = () => {
   const [isErrorOccurred, setIsErrorOccurred] = useState(false);
@@ -14,11 +14,11 @@ const RestaurantsList = () => {
   const [isListShown, setIsListShown] = useState(true);
   const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
   const [restaurantsList, setRestaurantsList] = useState<IRestaurant[]>([]);
-  
+
   const hideToastr = () => {
     setIsToastrShown(false);
-  }
-  
+  };
+
   const fetchRestaurantsData = async () => {
     try {
       const responseData = await getRestaurantsData();
@@ -29,28 +29,28 @@ const RestaurantsList = () => {
       setIsToastrShown(true);
       return [];
     }
-  }
-  
+  };
+
   useEffect(() => {
     fetchRestaurantsData().then(data => {
       setRestaurantsList(data);
     });
     setIsDeleteSuccess(false);
-  }, [isDeleteSuccess])
-  
+  }, [isDeleteSuccess]);
+
   const showListToggle = () => {
     setIsListShown(!isListShown);
-  }
+  };
 
   const resList = restaurantsList.map((restaurant: IRestaurant) =>
-      <RestaurantItem
-        key={restaurant._id}
-        restaurant={restaurant}
-        isViewOnly={false}
-        refetchData={ () => setIsDeleteSuccess(true) }
-      />
-    )
-  
+                                        <RestaurantItem
+                                          key={restaurant._id}
+                                          restaurant={restaurant}
+                                          isViewOnly={false}
+                                          refetchData={() => setIsDeleteSuccess(true)}
+                                        />
+  );
+
   return (
     <div className="page">
       <div className="m8 flex flex--center flex--column">
@@ -70,8 +70,8 @@ const RestaurantsList = () => {
           message={MESSAGES.RESPONSE.ERROR}/>
       }
     </div>
-  
-  )
-}
+
+  );
+};
 
 export default RestaurantsList;

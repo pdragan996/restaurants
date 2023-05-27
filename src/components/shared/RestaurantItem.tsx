@@ -1,34 +1,34 @@
 import React, { useState } from 'react';
-import './RestaurantItem.scss';
-import RestaurantDetailsModalData from '../informations/RestaurantDetailsModalData';
+import { MESSAGES } from '../../shared/config';
 import { IRestaurant } from '../../shared/models/restaurant.model';
-import Toastr from './toastr/Toastr';
-import {MESSAGES} from '../../shared/config';
+import RestaurantDetailsModalData from '../informations/RestaurantDetailsModalData';
+import Toastr from '../UI/Toastr';
+import './RestaurantItem.scss';
 
 const RestaurantItem = ({restaurant, isViewOnly, refetchData}: ListItemProps) => {
-  const [isModalOpened, setIsModalOpened] = useState(false)
-  const [isToastrOpened, setIsToastrOpened] = useState(false)
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [isToastrOpened, setIsToastrOpened] = useState(false);
 
   const closeModal = () => {
     setIsModalOpened(false);
-  }
-  
+  };
+
   const openModal = () => {
     if (!isViewOnly) {
       setIsModalOpened(true);
     }
-  }
+  };
 
   const handleDelete = () => {
     setIsToastrOpened(true);
     if (refetchData) {
       refetchData();
     }
-  }
-  
+  };
+
   return (
     <>
-      <li className={`flex m8 list-item p8 ${!isViewOnly ? 'list-item--clickable': ''}`} onClick={openModal}>
+      <li className={`flex m8 list-item p8 ${!isViewOnly ? 'list-item--clickable' : ''}`} onClick={openModal}>
         <span>Name: {restaurant.name}</span>
         <span>Rating: {restaurant.rating}</span>
         <span>Description: {restaurant.description}</span>
@@ -42,10 +42,10 @@ const RestaurantItem = ({restaurant, isViewOnly, refetchData}: ListItemProps) =>
         <Toastr
           type="success"
           message={MESSAGES.RESPONSE.SUCCESS.DELETE}
-          close={() => setIsToastrOpened(false)} />}
+          close={() => setIsToastrOpened(false)}/>}
     </>
-  )
-}
+  );
+};
 
 export default RestaurantItem;
 

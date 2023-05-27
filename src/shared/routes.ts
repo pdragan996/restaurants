@@ -1,5 +1,6 @@
 export const ROUTES = {
   DEFAULT: '/',
-  INFORMATIONS: '/informations',
-  ADD_NEW: '/add-new',
-}
+  RESTAURANTS: '/restaurants',
+  USERS: '/users',
+  PLACES: '/places'
+};

@@ -1,0 +1,21 @@
+@import "src/shared/Variables";
+
+.table-wrapper {
+  table {
+    width: 100%;
+  }
+
+  thead {
+    background-color: $color-grey-1;
+    color: white;
+  }
+
+  tbody {
+    background-color: $color-grey-0;
+  }
+
+  td {
+    text-align: center;
+    padding: 8px 0;
+  }
+}

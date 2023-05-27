@@ -1,11 +1,12 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import Dashboard from './components/Dashboard';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Home from './components/home-page/Home';
-import AddNew from './components/add-new/AddNew';
-import RestaurantsList from './components/informations/RestaurantsList';
-import {ROUTES} from './shared/routes';
+import Places from './components/places/Places';
+import Restaurants from './components/restaurants/Restaurants';
+import Users from './components/users/Users';
+import { ROUTES } from './shared/routes';
 
 
 function App() {
@@ -14,8 +15,10 @@ function App() {
       <Routes>
         <Route path={ROUTES.DEFAULT} element={<Dashboard/>}>
           <Route index element={<Home/>}/>
-          <Route path={ROUTES.ADD_NEW} element={<AddNew/>}/>
-          <Route path={ROUTES.INFORMATIONS} element={<RestaurantsList/>}/>
+          {/*<Route path={ROUTES.ADD_NEW} element={<AddNew/>}/>*/}
+          <Route path={ROUTES.RESTAURANTS} element={<Restaurants/>}/>
+          <Route path={ROUTES.USERS} element={<Users/>}/>
+          <Route path={ROUTES.PLACES} element={<Places/>}/>
           <Route path="*" element={<Home/>}/>
         </Route>
       </Routes>
