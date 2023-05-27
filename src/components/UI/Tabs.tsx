@@ -10,9 +10,6 @@ const Tabs = () => {
       <Link to={ROUTES.DEFAULT}>
         <div className="single-tab">Home</div>
       </Link>
-      {/*<Link to={ROUTES.ADD_NEW}>*/}
-      {/*  <div className="single-tab">Add restaurant</div>*/}
-      {/*</Link>*/}
       <Link to={ROUTES.RESTAURANTS}>
         <div className="single-tab">Restaurants</div>
       </Link>
