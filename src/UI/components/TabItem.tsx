@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import './styles/shared-style.scss';
-import './TabItem.scss';
+import '../styles/_shared-style.scss';
+import '../styles/components/TabItem.scss';
 
 interface TabItemProps {
   link: string;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { IRestaurant } from '../../models/restaurant.model';
 import { getRestaurantsData } from '../../services/restaurant.service';
-import Button from '../../UI/Button';
-import './Home.scss';
+import '../../styles/Home.scss';
+import Button from '../../UI/components/Button';
 import RestaurantInfo from './RestaurantInfo';
 
 const Home = () => {

@@ -2,5 +2,6 @@ export const ROUTES = {
   DEFAULT: '/',
   RESTAURANTS: '/restaurants',
   USERS: '/users',
-  PLACES: '/places'
+  PLACES: '/places',
+  LOGIN: '/login'
 };

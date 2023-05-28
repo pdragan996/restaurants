@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { IRestaurant } from '../../models/restaurant.model';
 import { MESSAGES } from '../../shared/config';
-import Toastr from '../../UI/Toastr';
-import './RestaurantInfo.scss';
+import '../../styles/RestaurantInfo.scss';
+import Toastr from '../../UI/components/Toastr';
 
 const RestaurantInfo = ({restaurant, cancelChoice}: ListItemProps) => {
   const [isToastrOpened, setIsToastrOpened] = useState(false);

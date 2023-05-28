@@ -1,7 +1,7 @@
 import React from 'react';
-import './Button.scss';
-import { ButtonType } from './models/button.type';
-import './styles/shared-style.scss';
+import { ButtonType } from '../models/button.type';
+import '../styles/_shared-style.scss';
+import '../styles/components/Button.scss';
 
 interface ButtonProps {
   name: string;

@@ -3,11 +3,10 @@ import { useForm } from 'react-hook-form';
 import { RestaurantBasic } from '../../models/restaurant.model';
 import { saveRestaurant } from '../../services/restaurant.service';
 import { MESSAGES } from '../../shared/config';
-import Button from '../../UI/Button';
-import Input from '../../UI/Input';
-import Textarea from '../../UI/Textarea';
-import Toastr from '../../UI/Toastr';
-import './AddRestaurant.scss';
+import Form from '../../UI/components/Form';
+import Input from '../../UI/components/Input';
+import Textarea from '../../UI/components/Textarea';
+import Toastr from '../../UI/components/Toastr';
 
 const ADD_RESTAURANT_LABELS = {
   name: 'Name',
@@ -21,7 +20,6 @@ const AddRestaurant = () => {
   const [isToastrShown, setIsToastrShown] = useState(false);
   const {
     register,
-    handleSubmit,
     watch,
     setValue,
     formState: {errors}
@@ -61,10 +59,7 @@ const AddRestaurant = () => {
 
   return (
     <>
-      <h1 className="flex flex--center">Add new restaurant to list</h1>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="add-new-form p16">
+      <Form title={'Add new restaurant'} onSubmit={onSubmit}>
         <Input
           register={register}
           label={ADD_RESTAURANT_LABELS.name}
@@ -85,12 +80,7 @@ const AddRestaurant = () => {
           placeholder="Add description"
           max={150}
         />
-
-        <div className="add-new-form__buttons flex flex--end">
-          <Button name="Add" type="submit"/>
-          <Button name="Reset" type="reset"/>
-        </div>
-      </form>
+      </Form>
       {
         isToastrShown && !isErrorOccurred &&
         <Toastr

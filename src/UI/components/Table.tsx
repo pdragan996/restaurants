@@ -1,5 +1,5 @@
 import React, { JSX } from 'react';
-import './Table.scss';
+import '../styles/components/Table.scss';
 
 interface TableProps {
   headers: string[];

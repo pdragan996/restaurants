@@ -1,6 +1,6 @@
 import React from 'react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
-import './Textarea.scss';
+import '../styles/components/Textarea.scss';
 
 const Textarea = ({label, register, ...rest}: TextareaProps) => {
   return (

@@ -1,4 +1,4 @@
-@import "src/shared/Variables";
+@import "src/UI/styles/_variables";
 
 .header-menu {
   width: 100%;
@@ -8,4 +8,8 @@
   top: 0;
   right: 0;
   z-index: 6;
+}
+
+.login-button {
+  margin-right: 16px;
 }

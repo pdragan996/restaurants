@@ -2,8 +2,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { UserBasic } from '../../models/user.model';
 import { addNewUser } from '../../services/users.service';
-import Button from '../../UI/Button';
-import Input from '../../UI/Input';
+import Form from '../../UI/components/Form';
+import Input from '../../UI/components/Input';
 
 const USER_FORM_LABELS = {
   email: 'Email',
@@ -15,7 +15,6 @@ const USER_FORM_LABELS = {
 const AddUser = () => {
   const {
     register,
-    handleSubmit,
     watch,
     setValue,
     formState: {errors}
@@ -36,27 +35,19 @@ const AddUser = () => {
       username: watch(USER_FORM_LABELS.username),
       //TODO Add logic for admin
       isAdmin: true,
-      isUserSuperAdmin: true
+      canCreateAdmin: true
     };
     await addNewUser(newUser);
+    resetForm();
   };
 
   return (
-    <>
-      <h1 className="flex flex--center">Add new user</h1>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="add-new-form p16">
-        <Input label={USER_FORM_LABELS.name} type="text" register={register}/>
-        <Input label={USER_FORM_LABELS.email} type="email" register={register}/>
-        <Input label={USER_FORM_LABELS.username} type="text" register={register}/>
-        <Input label={USER_FORM_LABELS.password} type="password" register={register}/>
-        <div className="add-new-form__buttons flex flex--end">
-          <Button name="Add" type="submit"/>
-          <Button name="Reset" type="reset"/>
-        </div>
-      </form>
-    </>
+    <Form title={'Add new user'} onSubmit={onSubmit}>
+      <Input label={USER_FORM_LABELS.name} type="text" register={register}/>
+      <Input label={USER_FORM_LABELS.email} type="email" register={register}/>
+      <Input label={USER_FORM_LABELS.username} type="text" register={register}/>
+      <Input label={USER_FORM_LABELS.password} type="password" register={register}/>
+    </Form>
   );
 };
 

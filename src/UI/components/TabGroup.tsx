@@ -1,7 +1,7 @@
 import React from 'react';
-import { Tab } from './models/tab.model';
-import './styles/shared-style.scss';
-import './TabGroup.scss';
+import { Tab } from '../models/tab.model';
+import '../styles/_shared-style.scss';
+import '../styles/components/TabGroup.scss';
 import TabItem from './TabItem';
 
 interface TabGroupProps {

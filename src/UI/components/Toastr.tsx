@@ -1,19 +1,19 @@
 import React from 'react';
-import './Toastr.scss';
+import '../styles/components/Toastr.scss';
 
 const Toastr = ({type, message, close, closeTimeout = 4}: ToastrProps) => {
 
   setTimeout(() => {
     close();
-  }, closeTimeout * 1000)
+  }, closeTimeout * 1000);
 
   return (
     <div className=
            {`p16 flex flex--center toastr ${type === 'success' ? 'toastr--success' : 'toastr--error'}`}>
       {message}
     </div>
-  )
-}
+  );
+};
 
 export default Toastr;
 
