@@ -1,8 +1,6 @@
-.tab-list {
-  gap: 16px;
-}
+@import "./styles/variables";
 
-.single-tab {
+.tab {
   font-size: 22px;
   cursor: pointer;
 

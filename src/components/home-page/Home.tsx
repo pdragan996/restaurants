@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { IRestaurant } from '../../models/restaurant.model';
 import { getRestaurantsData } from '../../services/restaurant.service';
-import { IRestaurant } from '../../shared/models/restaurant.model';
-import RestaurantInfo from '../shared/RestaurantInfo';
-import Button from '../UI/Button';
+import Button from '../../UI/Button';
 import './Home.scss';
+import RestaurantInfo from './RestaurantInfo';
 
 const Home = () => {
   const [isGenerated, setIsGenerated] = useState(false);

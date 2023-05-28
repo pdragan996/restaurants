@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { RestaurantBasic } from '../../models/restaurant.model';
 import { saveRestaurant } from '../../services/restaurant.service';
 import { MESSAGES } from '../../shared/config';
-import { RestaurantBasic } from '../../shared/models/restaurant.model';
-import Button from '../UI/Button';
-import Input from '../UI/Input';
-import Textarea from '../UI/Textarea';
-import Toastr from '../UI/Toastr';
+import Button from '../../UI/Button';
+import Input from '../../UI/Input';
+import Textarea from '../../UI/Textarea';
+import Toastr from '../../UI/Toastr';
 import './AddRestaurant.scss';
 
 const ADD_RESTAURANT_LABELS = {

@@ -1,8 +1,8 @@
 import React from 'react';
+import { IRestaurant } from '../../models/restaurant.model';
 import { deleteRestaurant } from '../../services/restaurant.service';
-import { IRestaurant } from '../../shared/models/restaurant.model';
-import Button from '../UI/Button';
-import Modal from '../UI/Modal';
+import Button from '../../UI/Button';
+import Modal from '../../UI/Modal';
 import './RestaurantDetailsModalData.scss';
 
 interface RestaurantDetailsModalDataProps {

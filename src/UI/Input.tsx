@@ -1,6 +1,7 @@
 import React from 'react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 import './Input.scss';
+import './styles/shared-style.scss';
 
 const Input = ({label, register, type, ...rest}: InputProps) => {
   return (

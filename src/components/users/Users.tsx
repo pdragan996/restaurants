@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from '../UI/Button';
+import Button from '../../UI/Button';
 import AddUser from './AddUser';
 import UsersList from './UsersList';
 

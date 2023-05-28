@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { IRestaurant, RestaurantBasic } from '../models/restaurant.model';
 import { serverUrl } from '../shared/config';
-import { IRestaurant, RestaurantBasic } from '../shared/models/restaurant.model';
 
 const url = `${serverUrl}restaurants`;
 

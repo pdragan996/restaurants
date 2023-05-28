@@ -1,9 +1,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { UserBasic } from '../../models/user.model';
 import { addNewUser } from '../../services/users.service';
-import { UserBasic } from '../../shared/models/user.model';
-import Button from '../UI/Button';
-import Input from '../UI/Input';
+import Button from '../../UI/Button';
+import Input from '../../UI/Input';
 
 const USER_FORM_LABELS = {
   email: 'Email',

@@ -1,6 +1,6 @@
-@import "src/shared/Variables";
+@import "./styles/variables";
 
-.textarea {
+.input {
   align-items: flex-start;
 
   &__field {

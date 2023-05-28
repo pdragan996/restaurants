@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { User } from '../../models/user.model';
 import { getUsers } from '../../services/users.service';
 import { MESSAGES } from '../../shared/config';
-import { User } from '../../shared/models/user.model';
-import Table from '../UI/Table';
-import Toastr from '../UI/Toastr';
+import Table from '../../UI/Table';
+import Toastr from '../../UI/Toastr';
 
 const UsersList = () => {
   const [isErrorOccured, setIsErrorOccurred] = useState(false);
