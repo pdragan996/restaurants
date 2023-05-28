@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../../UI/components/Button';
 import AddRestaurant from './AddRestaurant';
-import List from './List';
+import RestaurantsList from './RestaurantsList';
 
 const Restaurants = () => {
   const [addFormShown, setAddFormShown] = useState(false);
@@ -15,7 +15,7 @@ const Restaurants = () => {
       <Button name={addFormShown ? 'Hide form' : 'Add new restaurant'} clickFunction={showFormToggle}/>
       {addFormShown && <AddRestaurant/>}
     </div>
-    <List/>
+    <RestaurantsList/>
   </div>;
 };
 

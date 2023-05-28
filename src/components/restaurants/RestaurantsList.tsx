@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { IRestaurant } from '../../models/restaurant.model';
+import { useDispatch, useSelector } from 'react-redux';
+import { Restaurant } from '../../models/restaurant.model';
 import { getRestaurantsData } from '../../services/restaurant.service';
 import { MESSAGES } from '../../shared/config';
+import { setRestaurantsList } from '../../shared/store/slices';
+import { AppState } from '../../shared/store/state-models';
 import Table from '../../UI/components/Table';
 import Toastr from '../../UI/components/Toastr';
 
-const List = () => {
+const RestaurantsList = () => {
   const [isErrorOccured, setIsErrorOccurred] = useState(false);
   const [isToastrShown, setIsToastrShown] = useState(false);
-  const [restaurantsList, setRestaurantsList] = useState<IRestaurant[]>([]);
+  const restaurantsList = useSelector((state: AppState) => state.restaurants);
+  const dispatch = useDispatch();
 
   const hideToastr = () => {
     setIsToastrShown(false);
   };
 
-  const mapRestaurantsToTableDataSource = (restaurants: IRestaurant[]) => {
+  const mapRestaurantsToTableDataSource = (restaurants: Restaurant[]) => {
     return restaurants.map(restaurant =>
                              <tr key={restaurant._id}>
                                <td>{restaurant.name}</td>
@@ -24,9 +28,10 @@ const List = () => {
                              </tr>);
   };
 
-  const fetchRestaurantsData = async (): Promise<IRestaurant[]> => {
+  const fetchRestaurantsData = async (): Promise<Restaurant[]> => {
     try {
       const responseData = await getRestaurantsData();
+      dispatch(setRestaurantsList(responseData));
       setIsErrorOccurred(false);
       return responseData;
     } catch (error) {
@@ -37,9 +42,9 @@ const List = () => {
   };
 
   useEffect(() => {
-    fetchRestaurantsData().then(data => {
-      setRestaurantsList(data);
-    });
+    if (!restaurantsList?.length) {
+      fetchRestaurantsData();
+    }
   }, []);
 
   const columnNames = ['Name', 'Rating', 'Location', 'Description'];
@@ -47,7 +52,6 @@ const List = () => {
 
   return <>
     <Table headers={columnNames} rows={restaurantsList} mapFunction={mapRestaurantsToTableDataSource}/>
-
     {
       isToastrShown &&
       <Toastr
@@ -59,4 +63,4 @@ const List = () => {
   </>;
 };
 
-export default List;
+export default RestaurantsList;

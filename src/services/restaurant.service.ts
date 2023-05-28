@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { IRestaurant, RestaurantBasic } from '../models/restaurant.model';
+import { Restaurant, RestaurantBasic } from '../models/restaurant.model';
 import { serverUrl } from '../shared/config';
 
 const url = `${serverUrl}restaurants`;
 
-export const getRestaurantsData = async (): Promise<IRestaurant[]> => {
-  return (await axios.get<IRestaurant[]>(url)).data;
+export const getRestaurantsData = async (): Promise<Restaurant[]> => {
+  return (await axios.get<Restaurant[]>(url)).data;
 };
 
 export const saveRestaurant = async (restaurant: RestaurantBasic): Promise<void> => {

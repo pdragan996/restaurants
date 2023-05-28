@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { RestaurantBasic } from '../../models/restaurant.model';
 import { saveRestaurant } from '../../services/restaurant.service';
 import { MESSAGES } from '../../shared/config';
@@ -18,6 +19,7 @@ const ADD_RESTAURANT_LABELS = {
 const AddRestaurant = () => {
   const [isErrorOccurred, setIsErrorOccurred] = useState(false);
   const [isToastrShown, setIsToastrShown] = useState(false);
+  const dispatch = useDispatch();
   const {
     register,
     watch,

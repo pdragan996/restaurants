@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IRestaurant } from '../../models/restaurant.model';
+import { Restaurant } from '../../models/restaurant.model';
 import { MESSAGES } from '../../shared/config';
 import '../../styles/RestaurantInfo.scss';
 import Toastr from '../../UI/components/Toastr';
@@ -33,6 +33,6 @@ const RestaurantInfo = ({restaurant, cancelChoice}: ListItemProps) => {
 export default RestaurantInfo;
 
 interface ListItemProps {
-  restaurant: IRestaurant;
+  restaurant: Restaurant;
   cancelChoice: () => void;
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { ROUTES } from '../../shared/routes';
 import '../../styles/HeaderMenu.scss';
 import Button from '../../UI/components/Button';
@@ -10,8 +11,12 @@ import LoginModalData from './LoginModalData';
 
 const HeaderMenu = () => {
   const [isLoginModalOpened, setIsLoginModalOpened] = useState(false);
+  const loggedUser = useSelector((state: any) => state);
 
-  const closeModal = () => setIsLoginModalOpened(false);
+  const closeModal = () => {
+    console.log(loggedUser);
+    setIsLoginModalOpened(false);
+  };
   const openModal = () => setIsLoginModalOpened(true);
 
   const tabList: Tab[] = [

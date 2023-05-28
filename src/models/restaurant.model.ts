@@ -1,4 +1,4 @@
-export interface IRestaurant extends RestaurantBasic {
+export interface Restaurant extends RestaurantBasic {
   _id: string;
 }
 

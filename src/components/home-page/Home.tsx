@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { IRestaurant } from '../../models/restaurant.model';
+import { useDispatch, useSelector } from 'react-redux';
 import { getRestaurantsData } from '../../services/restaurant.service';
+import { setRestaurantsList } from '../../shared/store/slices';
+import { AppState } from '../../shared/store/state-models';
 import '../../styles/Home.scss';
 import Button from '../../UI/components/Button';
 import RestaurantInfo from './RestaurantInfo';
@@ -9,11 +11,13 @@ const Home = () => {
   const [isGenerated, setIsGenerated] = useState(false);
   const [randomNumber, setRandomNumber] = useState(0);
   const [isErrorOccurred, setIsErrorOccurred] = useState(false);
-  const [restaurantsList, setRestaurantsList] = useState<IRestaurant[]>([]);
+  const restaurantsList = useSelector((state: AppState) => state.restaurants);
+  const dispatch = useDispatch();
 
   const fetchRestaurantsData = async () => {
     try {
       const responseData = await getRestaurantsData();
+      dispatch(setRestaurantsList(responseData));
       setIsErrorOccurred(false);
       return responseData;
     } catch (error) {
@@ -24,10 +28,9 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetchRestaurantsData().then(list => setRestaurantsList(list)).catch(err => {
-      setIsErrorOccurred(true);
-      // TODO Custom error handling
-    });
+    if (!restaurantsList?.length) {
+      fetchRestaurantsData();
+    }
   }, []);
 
   const getRandomNum = () => {
@@ -35,8 +38,7 @@ const Home = () => {
     // const randomNum = Math.floor(Math.random() * (restaurantsList.length * 2));
     // const pastirIndex = restaurantsList.findIndex(item => +item.id === 0) ?? 0;
     // const listIndex = randomNum < restaurantsList.length ? randomNum : pastirIndex;
-
-    const listIndex = Math.floor(Math.random() * restaurantsList.length);
+    const listIndex = Math.floor(Math.random() * restaurantsList?.length ?? 0);
     setRandomNumber(listIndex);
     setIsGenerated(true);
   };

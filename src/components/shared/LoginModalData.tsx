@@ -1,6 +1,9 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { Credentials } from '../../models/credentials.model';
 import { login } from '../../services/users.service';
+import { setLoggedUser } from '../../shared/store/slices';
 import Form from '../../UI/components/Form';
 import Input from '../../UI/components/Input';
 
@@ -10,12 +13,17 @@ const LOGIN_FORM_LABELS = {
 };
 
 const LoginModalData = () => {
-
   const {
     register,
     watch,
     formState: {errors}
   } = useForm();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // TODO Add logic for refetch
+    console.log('aaa');
+  }, []);
 
   const submitForm = async () => {
     try {
@@ -26,10 +34,9 @@ const LoginModalData = () => {
 
       const user = await login(userCredentials);
 
-      console.log(user);
-
-
-      console.log(userCredentials);
+      if (user) {
+        dispatch(setLoggedUser(user));
+      }
     } catch (error) {
       console.log(error);
     }
