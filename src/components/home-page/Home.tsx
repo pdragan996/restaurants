@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRestaurantsData } from '../../services/restaurant.service';
+import { RESTAURANTS_CONFIG } from '../../shared/config';
 import { setRestaurantsList } from '../../shared/store/slices';
 import { AppState } from '../../shared/store/state-models';
 import '../../styles/Home.scss';
 import Button from '../../UI/components/Button';
+import Toastr from '../../UI/components/Toastr';
 import RestaurantInfo from './RestaurantInfo';
 
 const Home = () => {
   const [isGenerated, setIsGenerated] = useState(false);
   const [randomNumber, setRandomNumber] = useState(0);
   const [isErrorOccurred, setIsErrorOccurred] = useState(false);
+  const [toastrMessage, setToastrMessage] = useState('');
   const restaurantsList = useSelector((state: AppState) => state.restaurants);
   const dispatch = useDispatch();
 
-  const fetchRestaurantsData = async () => {
+  const fetchRestaurantsData = async (): Promise<void> => {
     try {
       const responseData = await getRestaurantsData();
       dispatch(setRestaurantsList(responseData));
       setIsErrorOccurred(false);
-      return responseData;
-    } catch (error) {
-      //TODO Add custom error handling
+    } catch (error: any) {
       setIsErrorOccurred(true);
-      return [];
+      setToastrMessage(error?.response.data || RESTAURANTS_CONFIG.FETCH_FAILED);
     }
   };
 
@@ -47,17 +48,25 @@ const Home = () => {
     setIsGenerated(false);
   };
 
-  return (
+  return <>
     <div className="page home-wrapper">
       <h1 className="header-title flex flex--center">Select random restaurant from Banja Luka</h1>
       <div className="flex flex--center flex--column p8  choose-restaurant">
         <Button name="Generate restaurant" clickFunction={getRandomNum}/>
-        {isGenerated && !isErrorOccurred && <RestaurantInfo
-          cancelChoice={handleCancelChoice}
-          restaurant={restaurantsList[randomNumber]}/>}
+        {isGenerated && !isErrorOccurred &&
+          <RestaurantInfo
+            cancelChoice={handleCancelChoice}
+            restaurant={restaurantsList[randomNumber]}/>}
       </div>
     </div>
-  );
+    {
+      toastrMessage && isErrorOccurred &&
+      <Toastr
+        type={'error'}
+        message={toastrMessage}
+        close={() => setToastrMessage('')}/>
+    }
+  </>;
 };
 
 export default Home;

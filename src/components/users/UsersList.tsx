@@ -2,37 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { User } from '../../models/user.model';
 import { getUsers } from '../../services/users.service';
-import { MESSAGES } from '../../shared/config';
+import { USER_CONFIG } from '../../shared/config';
 import { setUsersList } from '../../shared/store/slices';
 import { AppState } from '../../shared/store/state-models';
 import Table from '../../UI/components/Table';
 import Toastr from '../../UI/components/Toastr';
 
 const UsersList = () => {
-  const [isErrorOccured, setIsErrorOccurred] = useState(false);
-  const [isToastrShown, setIsToastrShown] = useState(false);
+  const [toastrMessage, setToastrMessage] = useState('');
   const usersList = useSelector((state: AppState) => state.users);
   const dispatch = useDispatch();
 
   const mapUsersToTableRows = (users: User[]) => {
-    return users.map(user => <tr key={user._id}>
-      <td>{user.name}</td>
-      <td>{user.username}</td>
-      <td>{user.email}</td>
-      <td>{user.isAdmin ? 'Yes' : 'No'}</td>
-    </tr>);
+    return users.map(
+      (user: User) =>
+        <tr key={user._id}>
+          <td>{user.name}</td>
+          <td>{user.username}</td>
+          <td>{user.email}</td>
+          <td>{user.isAdmin ? 'Yes' : 'No'}</td>
+        </tr>);
   };
 
-  const fetchUserData = async (): Promise<User[]> => {
+  const fetchUserData = async (): Promise<void> => {
     try {
       const responseData: User[] = await getUsers();
       dispatch(setUsersList(responseData));
-      setIsErrorOccurred(false);
-      return responseData;
-    } catch (err) {
-      setIsErrorOccurred(true);
-      setIsToastrShown(true);
-      return [];
+    } catch (err: any) {
+      setToastrMessage(err?.response?.data ?? USER_CONFIG.FETCH_FAILED);
     }
   };
 
@@ -44,21 +41,19 @@ const UsersList = () => {
     }
   }, []);
 
-  const hideToastr = () => setIsToastrShown(false);
+  const hideToastr = () => setToastrMessage('');
 
-  return (
-    <>
-      <Table headers={columnNames} rows={usersList} mapFunction={mapUsersToTableRows}/>
-      {
-        isToastrShown &&
-        <Toastr
-          close={hideToastr}
-          closeTimeout={4}
-          type="error"
-          message={MESSAGES.RESPONSE.ERROR}/>
-      }
-    </>
-  );
+  return <>
+    <Table headers={columnNames} rows={usersList} mapFunction={mapUsersToTableRows}/>
+    {
+      toastrMessage &&
+      <Toastr
+        close={hideToastr}
+        closeTimeout={4}
+        type="error"
+        message={toastrMessage}/>
+    }
+  </>;
 };
 
 export default UsersList;

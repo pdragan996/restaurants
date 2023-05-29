@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { RestaurantBasic } from '../../models/restaurant.model';
 import { saveRestaurant } from '../../services/restaurant.service';
-import { MESSAGES } from '../../shared/config';
+import { RESTAURANTS_CONFIG } from '../../shared/config';
 import Form from '../../UI/components/Form';
 import Input from '../../UI/components/Input';
 import Textarea from '../../UI/components/Textarea';
@@ -18,18 +17,13 @@ const ADD_RESTAURANT_LABELS = {
 
 const AddRestaurant = () => {
   const [isErrorOccurred, setIsErrorOccurred] = useState(false);
-  const [isToastrShown, setIsToastrShown] = useState(false);
-  const dispatch = useDispatch();
+  const [toastrMessage, setToastrMessage] = useState('');
   const {
     register,
     watch,
     setValue,
     formState: {errors}
   } = useForm();
-
-  const removeToastr = () => {
-    setIsToastrShown(false);
-  };
 
   const resetForm = () => {
     setValue(ADD_RESTAURANT_LABELS.name, '');
@@ -46,63 +40,53 @@ const AddRestaurant = () => {
         location: watch(ADD_RESTAURANT_LABELS.location),
         description: watch(ADD_RESTAURANT_LABELS.description)
       };
+
       await saveRestaurant(restaurant);
       resetForm();
 
       setIsErrorOccurred(false);
-      setIsToastrShown(false);
-
-    } catch (error) {
-      // TODO Check errors from firebase
+      setToastrMessage(RESTAURANTS_CONFIG.ADD_SUCCESS);
+    } catch (error: any) {
       setIsErrorOccurred(true);
-      setIsToastrShown(true);
+      setToastrMessage(error?.response.data || RESTAURANTS_CONFIG.ADD_FAILED);
     }
   };
 
-  return (
-    <>
-      <Form title={'Add new restaurant'} onSubmit={onSubmit}>
-        <Input
-          register={register}
-          label={ADD_RESTAURANT_LABELS.name}
-          type="text"/>
-        <Input
-          register={register}
-          label={ADD_RESTAURANT_LABELS.rating}
-          max={10}
-          min={0}
-          type="number"/>
-        <Input
-          register={register}
-          label={ADD_RESTAURANT_LABELS.location}
-          type="text"/>
-        <Textarea
-          label={ADD_RESTAURANT_LABELS.description}
-          register={register}
-          placeholder="Add description"
-          max={150}
-        />
-      </Form>
-      {
-        isToastrShown && !isErrorOccurred &&
-        <Toastr
-          close={removeToastr}
-          closeTimeout={3}
-          message={MESSAGES.RESPONSE.SUCCESS.ADD}
-          type="success"
-        />
-      }
-      {
-        isToastrShown && isErrorOccurred &&
-        <Toastr
-          close={removeToastr}
-          closeTimeout={4}
-          message={'Form is not valid'}
-          type="error"
-        />
-      }
-    </>
-  );
+  return <>
+    <Form
+      title={'Add new restaurant'}
+      onSubmit={onSubmit}>
+      <Input
+        register={register}
+        label={ADD_RESTAURANT_LABELS.name}
+        type="text"/>
+      <Input
+        register={register}
+        label={ADD_RESTAURANT_LABELS.rating}
+        max={10}
+        min={0}
+        type="number"/>
+      <Input
+        register={register}
+        label={ADD_RESTAURANT_LABELS.location}
+        type="text"/>
+      <Textarea
+        label={ADD_RESTAURANT_LABELS.description}
+        register={register}
+        placeholder="Add description"
+        max={150}
+      />
+    </Form>
+    {
+      toastrMessage &&
+      <Toastr
+        close={() => setToastrMessage('')}
+        closeTimeout={3}
+        message={toastrMessage}
+        type={isErrorOccurred ? 'error' : 'success'}
+      />
+    }
+  </>;
 };
 //
 // const isNameValid = (name: string): boolean => {
