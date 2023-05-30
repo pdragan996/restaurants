@@ -52,7 +52,7 @@ const AddUser = () => {
       resetForm();
     } catch (error: any) {
       setIsErrorOccured(true);
-      setToastrMessage(error?.response.data || USER_CONFIG.ADD_FAILED);
+      setToastrMessage(error?.response?.data || USER_CONFIG.ADD_FAILED);
     }
   };
 

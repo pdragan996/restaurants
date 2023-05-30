@@ -43,7 +43,7 @@ const LoginModalData = ({onSuccessLogin}: LoginModalDataProps) => {
       setToastrMessage(LOGIN_MESSAGES.SUCCESS);
     } catch (error: any) {
       setIsErrorOccurred(true);
-      setToastrMessage(error.response.data.toString() ?? LOGIN_MESSAGES.FAILED);
+      setToastrMessage(error?.response?.data ?? LOGIN_MESSAGES.FAILED);
     }
   };
 

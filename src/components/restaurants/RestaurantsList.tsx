@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Restaurant } from '../../models/restaurant.model';
-import { getRestaurantsData } from '../../services/restaurant.service';
+import { fetchRestaurants } from '../../services/restaurant.service';
 import { RESTAURANTS_CONFIG } from '../../shared/config';
 import { setRestaurantsList } from '../../shared/store/slices';
 import { AppState } from '../../shared/store/state-models';
@@ -28,12 +28,12 @@ const RestaurantsList = () => {
 
   const fetchRestaurantsData = async (): Promise<void> => {
     try {
-      const responseData = await getRestaurantsData();
+      const responseData = await fetchRestaurants();
       dispatch(setRestaurantsList(responseData));
       setIsErrorOccurred(false);
     } catch (error: any) {
       setIsErrorOccurred(true);
-      setToastrMessage(error?.response.data ?? RESTAURANTS_CONFIG.FETCH_FAILED);
+      setToastrMessage(error?.response?.data ?? RESTAURANTS_CONFIG.FETCH_FAILED);
     }
   };
 
@@ -44,7 +44,7 @@ const RestaurantsList = () => {
   }, []);
 
   const columnNames = ['Name', 'Rating', 'Location', 'Description'];
-  
+
   return <>
     <Table
       headers={columnNames}

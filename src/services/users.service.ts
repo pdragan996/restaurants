@@ -6,7 +6,8 @@ import { serverUrl } from '../shared/config';
 const url = `${serverUrl}users`;
 
 export const addNewUser = async (user: UserBasic): Promise<void> => {
-  await axios.post(url, user);
+  const response = await axios.post(url, user);
+  console.log(response);
 };
 
 export const getUsers = async (): Promise<User[]> => {
@@ -14,5 +15,7 @@ export const getUsers = async (): Promise<User[]> => {
 };
 
 export const login = async (credentials: Credentials) => {
-  return (await axios.post(`${serverUrl}login`, credentials)).data;
+  const response = await axios.post(`${serverUrl}login`, credentials);
+  console.log(response);
+  return response?.data || null;
 };

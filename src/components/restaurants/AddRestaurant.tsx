@@ -48,7 +48,7 @@ const AddRestaurant = () => {
       setToastrMessage(RESTAURANTS_CONFIG.ADD_SUCCESS);
     } catch (error: any) {
       setIsErrorOccurred(true);
-      setToastrMessage(error?.response.data || RESTAURANTS_CONFIG.ADD_FAILED);
+      setToastrMessage(error?.response?.data || RESTAURANTS_CONFIG.ADD_FAILED);
     }
   };
 
