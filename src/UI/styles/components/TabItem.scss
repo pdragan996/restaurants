@@ -8,4 +8,9 @@
     opacity: 0.5;
     font-size: 24px;
   }
+
+  &--active {
+    color: slategray;
+    font-style: italic;
+  }
 }

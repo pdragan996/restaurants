@@ -32,19 +32,27 @@ const HeaderMenu = () => {
   const tabList: Tab[] = [
     {
       link: ROUTES.DEFAULT,
-      name: 'Home'
+      name: 'Home',
+      isActive: true,
+      tabId: 0
     },
     {
       link: ROUTES.RESTAURANTS,
-      name: 'Restaurants'
+      name: 'Restaurants',
+      isActive: false,
+      tabId: 1
     },
     {
       link: ROUTES.USERS,
-      name: 'Users'
+      name: 'Users',
+      isActive: false,
+      tabId: 2
     },
     {
       link: ROUTES.PLACES,
-      name: 'Places'
+      name: 'Places',
+      isActive: false,
+      tabId: 3
     }
   ];
 

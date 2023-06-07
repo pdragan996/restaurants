@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tab } from '../models/tab.model';
 import '../styles/_shared-style.scss';
 import '../styles/components/TabGroup.scss';
@@ -9,8 +9,19 @@ interface TabGroupProps {
 }
 
 const TabGroup = ({tabs}: TabGroupProps) => {
+  const [activeTab, setActiveTab] = useState(0);
 
-  const tabList = tabs.map(tab => <TabItem link={tab.link} name={tab.name} key={tab.name}/>);
+  const handleTablChanges = (tabId: number) => {
+    setActiveTab(tabId);
+  };
+
+  const tabList = tabs.map((tab: Tab) =>
+                             <TabItem
+                               link={tab.link}
+                               name={tab.name}
+                               isActive={activeTab === tab.tabId}
+                               setIsActive={() => setActiveTab(tab.tabId)}
+                               key={tab.name}/>);
 
   return (
     <ul className="tab-list flex">
